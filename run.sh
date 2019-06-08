@@ -13,6 +13,7 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.9.2.jar \
 -D mapreduce.partition.keypartitioner.options=-k1 \
 -D mapred.text.key.comparator.options=-r \
 -D mapreduce.job.reduces=3 \
+-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
 -file category_mapper.py \
 -mapper category_mapper.py \
 -file category_reducer.py \
