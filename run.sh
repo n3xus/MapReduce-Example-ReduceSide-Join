@@ -11,6 +11,7 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.9.2.jar \
 -D mapreduce.job.name='ReduceSideJoin' \
 -D stream.num.map.output.key.fields=2 \
 -D mapred.text.key.comparator.options=-r \
+-D mapreduce.job.reduces=3 \
 -file category_mapper.py \
 -mapper category_mapper.py \
 -file category_reducer.py \
