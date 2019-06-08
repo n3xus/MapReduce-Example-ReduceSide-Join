@@ -32,7 +32,7 @@ def category_mapper():
         if video_id == "video_id":
             continue
 
-        print("{}\t{}\t{}".format(video_id, author, trending_date, likes))
+        print("{}\t{}\t{}\t{}".format(video_id, author, trending_date, likes))
 
 
 if __name__ == "__main__":
