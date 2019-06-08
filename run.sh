@@ -10,13 +10,13 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.9.2.jar \
 -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
 -D mapreduce.job.name='ReduceSideJoin' \
 -D stream.num.map.output.key.fields=2 \
--D mapreduce.partition.keypartitioner.options=-k1 \
--D mapred.text.key.comparator.options=-r \
+-D mapreduce.partition.keypartitioner.options=-k1,1 \
+-D mapred.text.key.comparator.options=-k2,2r \
 -D mapreduce.job.reduces=3 \
--partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
 -file category_mapper.py \
 -mapper category_mapper.py \
 -file category_reducer.py \
 -reducer category_reducer.py \
 -input $1 \
--output $2
+-output $2 \
+-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
