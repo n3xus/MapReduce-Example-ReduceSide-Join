@@ -7,10 +7,10 @@ if [ $# -ne 2 ]; then
 fi
 
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.9.2.jar \
--D mapreduce.job.reduces=3 \
+-D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
 -D mapreduce.job.name='ReduceSideJoin' \
 -D stream.num.map.output.key.fields=2 \
--D mapreduce.partition.keypartitioner.options=-k1,2r \
+-D mapreduce.partition.keypartitioner.options=-r \
 -file category_mapper.py \
 -mapper category_mapper.py \
 -file category_reducer.py \
