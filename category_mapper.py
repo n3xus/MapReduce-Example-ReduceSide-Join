@@ -1,29 +1,38 @@
 #!/usr/bin/python3
-
+"""
+Reduce Side Join Example
+"""
 import sys
 
 
 def category_mapper():
     """ Maps videos to category
-    Input format: video_id \t category \t trending_date \t views \t country
-    Output format: category \t video_id \t country
+    Author Input format: video_id , Author Name
+
+    Video Input format: video_id, trending_date, category_id, category, publish_time, views,likes, dislikes,
+                        comment_count, ratings_disabled, video_error_or_removed, country
+
+    Output format: video_id \t Author Name \t trending_date \t likes
     """
     for line in sys.stdin:
-        # Clean input and split it
+        author = "-"
+        likes = "-"
+        trending_date = "-"
+
         parts = line.strip().split(",")
 
-        # Check that the line is of the correct format
-        # If line is malformed, we ignore the line and continue to the next line
-        if len(parts) != 12:
+        if len(parts) == 12:
+            video_id = parts[0]
+            trending_date = parts[1]
+            likes = parts[6]
+        else:
+            video_id = parts[0]
+            author = parts[1]
+
+        if video_id == "video_id":
             continue
 
-        video_id = parts[0]
-        likes = parts[6]
-
-        if video_id == "video_id":  # Skipping Header
-            continue
-
-        print("{}\t{}\t{}".format(video_id, likes, 1))
+        print("{}\t{}\t{}".format(video_id, author, trending_date, likes))
 
 
 if __name__ == "__main__":
